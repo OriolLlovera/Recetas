@@ -1,0 +1,61 @@
+<link href="https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi"
+  rel="stylesheet">
+<!-- CSS FONT GOOGLE-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-4"> </div>
+    <div class="col-xs-4">
+      <h1 class="h1home"> <b>Recetas Disponibles</b></h1>
+      <input type="text" class="form-control" name="filterPost" placeholder="Buscar..." [(ngModel)]="filterPost">
+    </div>
+    <div class="col-xs-4"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 " *ngFor="let recipe of recipes | filter :filterPost">
+
+      <!-- HEH-->
+      <!-- Card Wider -->
+      <div class="card card-cascade wider margin-card ">
+
+        <!-- Card image -->
+        <div class="view view-cascade overlay ">
+          <img class="card-img-top img-responsive" src="{{recipe.portada}}" height="400px" weight="850"
+            alt="Card image cap">
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+
+          <!-- Title -->
+          <h2 class="card-title"><strong>{{recipe.titulo}}</strong></h2>
+          <!-- Subtitle -->
+          <h3 class="autorestil card-autor"><b>{{recipe.autor}}</b></h3>
+          <span class=" px-2 fa-lg li-ic badge badge-info floatspan1">{{recipe.clase}} <i
+              class="fa fa-cutlery"></i></span>
+          <span class=" px-2 fa-lg li-ic badge badge-primary floatspan2">{{recipe.numpersonas}} <i
+              class="fa fa-user"></i></span>
+          <span class=" px-2 fa-lg li-ic badge badge-warning floatspan2">{{recipe.tiempo}} <i
+              class="fa fa-clock-o"></i></span>
+          <br><br>
+          <!-- Text -->
+          <p class="card-text textareaespais">{{recipe.descripcion}}</p>
+
+
+          <a routerLink="/recipe/{{recipe.id}}"> <button type="button" class="btn btn-lg btn-primary"><b>VER MÁS
+                DETALLES</b></button> </a>
+
+          <button class="btn like-review" (click)="onAddFav(recipe)">
+            <i class="fa fa-heart" aria-hidden="true"></i> Like
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

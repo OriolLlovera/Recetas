@@ -1,0 +1,90 @@
+<div class="modal fade" id="modalRecipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {{ !this.dataApi.selectedRecipe.id ? 'Nueva Receta' : 'Actualizar Receta'}}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="onCloseMember()" >&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="formRecipe" #formRecipe="ngForm" (ngSubmit)="onSaveRecipe(formRecipe)">
+          <input type="hidden" name="id" required [(ngModel)]="this.dataApi.selectedRecipe.id">
+          <input type="hidden" name="userUid"required [value]="userUid">
+          <div class="form-group">
+            <label for="titulo" class="col-form-label">Nombre Receta:</label>
+            <input type="text" required class="form-control" name="titulo" [(ngModel)]="this.dataApi.selectedRecipe.titulo">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="clase">Clase</label>
+              <select name="clase" class="form-control" required [(ngModel)]="this.dataApi.selectedRecipe.clase">
+                <option value="Entrante">Entrante</option>
+                <option value="Comida">Comida</option>                
+                <option value="Postre">Postre</option>
+                <option value="Postre">Otros</option>                 
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="tiempo">Tiempo</label>
+              <input type="text" required name="tiempo" class="form-control" placeholder="60" [(ngModel)]="this.dataApi.selectedRecipe.tiempo">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="tiempo">Número de personas</label>
+                <input type="text" name="numpersonas" required class="form-control" placeholder="4" [(ngModel)]="this.dataApi.selectedRecipe.numpersonas">
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="autor">Autor</label>
+              <input type="text" name="autor" required class="form-control" placeholder="Autor" [(ngModel)]="this.dataApi.selectedRecipe.autor">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="nuevo">Nueva Receta</label>
+              <select name="nuevo" class="form-control" required [(ngModel)]="this.dataApi.selectedRecipe.nuevo">
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="portada">Foto Receta</label>
+              <input type="text" name="portada" class="form-control" placeholder="Portada" [(ngModel)]="this.dataApi.selectedRecipe.portada">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="link_video">Enlace Video(opcional)</label>
+              <input type="text" name="link_video" class="form-control" required placeholder="Link video" [(ngModel)]="this.dataApi.selectedRecipe.link_video">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="descripcion" class="col-form-label">Breve Descripción:</label>
+            <textarea class="form-control" rows="6" name="descripcion" required placeholder="Escribe aqui una descripción corta 4-5 lineas" [(ngModel)]="this.dataApi.selectedRecipe.descripcion"></textarea>
+          </div>
+          <div class="form-group">
+              <label for="ingredientes" class="col-form-label">Ingredientes:</label>
+              <textarea class="form-control" rows="6" required name="ingredientes" 
+              placeholder="
+              500 g  harina de trigo 
+              350 ml Agua
+              6 g levadura
+              10 g de sal" [(ngModel)]="this.dataApi.selectedRecipe.ingredientes"></textarea>
+            </div>
+          <div class="form-group">
+              <label for="preparacion" class="col-form-label">Preparación detallada:</label>
+              <textarea class="form-control" required rows="14" name="preparacion" placeholder="Escribe aqui todo el proceso de preparación" [(ngModel)]="this.dataApi.selectedRecipe.preparacion"></textarea>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal" (click)="onCloseMember()">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Publicar Receta</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+

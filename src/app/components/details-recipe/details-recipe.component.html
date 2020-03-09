@@ -1,0 +1,52 @@
+<link href="https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi"
+  rel="stylesheet">
+<!-- CSS FONT GOOGLE-->
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+      <!-- HEH-->
+      <!-- Card Wider -->
+      <div class="card card-cascade wider margin-card ">
+
+        <!-- Card image -->
+        <div class="view view-cascade overlay ">
+          <img class="card-img-top" src="{{recipe.portada}}" alt="Card image cap">
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+
+          <!-- Title -->
+          <h2 class="card-title"><strong>{{recipe.titulo}}</strong></h2>
+          <!-- Subtitle -->
+          <h3 class="autorestil card-autor"><b>{{recipe.autor}}</b></h3>
+
+          <span class=" px-2 fa-lg li-ic badge badge-info floatspan1">{{recipe.clase}} <i
+              class="fa fa-cutlery"></i></span>
+          <span class=" px-2 fa-lg li-ic badge badge-primary floatspan2">{{recipe.numpersonas}} <i
+              class="fa fa-user"></i></span>
+          <span class=" px-2 fa-lg li-ic badge badge-warning floatspan2">{{recipe.tiempo}} <i
+              class="fa fa-clock-o"></i></span>
+          <br><br>
+          <!-- Text -->
+          <p class="card-text">{{recipe.descripcion}}</p>
+          <p class="card-title"><b>Ingredientes</b></p>
+          <p class="card-text textareaespais">{{recipe.ingredientes}}</p>
+          <p class="card-title"><b>Preparación</b></p>
+          <p class="card-text textareaespais">{{recipe.preparacion}}</p>
+
+          <ng-template [ngIf]="recipe.link_video">
+            <a href="{{recipe.link_video}}" target="_blank"> <button type="button" class="btn btn-lg btn-primary"><b>VER
+                  VIDEORECETA</b></button> </a>
+          </ng-template>
+          <br>
+        </div>
+
+      </div>     
+    </div>
+  </div>
+</div>

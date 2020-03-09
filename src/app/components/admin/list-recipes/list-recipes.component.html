@@ -1,0 +1,54 @@
+<div class="container">
+<section class="row mt-5">
+    <div class="col">
+      <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalRecipe">Nueva Receta</button>
+      <table class="table table-hover" >
+        <thead>
+          <tr >
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Clase</th>
+            <th scope="col">Tiempo</th>
+            <th scope="col">Nueva Receta</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let recipe of recipes; index as i">
+          
+          <tr *ngIf="recipe.userUid == userUid || isAdmin == true" >            
+            <th scope="row">{{i+1}}</th>
+            <td>{{recipe.titulo}}</td>
+            <div *ngFor="let user of users">
+              <td *ngIf="recipe.userUid == user.id">{{user.email}}</td>
+            </div>            
+            <td>{{recipe.clase}}</td>
+            <td>{{recipe.tiempo}}</td>
+            <td>{{recipe.nuevo == 1 ? 'Sí': 'No'}}</td>
+
+            <td *ngIf="recipe.userUid == userUid || isAdmin == true; else noOwner">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#modalRecipe" (click)="onPreUpdateRecipe(recipe)">Actualizar</button>
+            </td>
+            
+            <ng-template #noOwner>
+              <td>
+                <button class="btn btn-secondary" disabled="true">No modificable</button>
+              </td>
+            </ng-template>
+            <td *ngIf="recipe.userUid == userUid || isAdmin == true; else noOwner">
+                <button class="btn btn-danger" (click)="onDeleteRecipe(recipe.id)">Eliminar</button>
+            </td>
+            <ng-template #noAdmin>
+              <td>
+                <button class="btn btn-danger" disabled="true">Eliminar</button>
+              </td>
+            </ng-template>
+          
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <app-modal [userUid]="userUid"></app-modal>
+</div>
